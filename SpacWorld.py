@@ -1,5 +1,8 @@
 class SpacWorld:
 
+    import Monster
+    import Player
+
     # import outside code to make stuff work with less complexity
     from random import uniform, randint
     from time import sleep  # anytime you see sleep(i) stops the program for i seconds
