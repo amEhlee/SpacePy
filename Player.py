@@ -1,9 +1,10 @@
-class Player(Avatar):
-    # initalize player variables
-    player_health = 100  # store player health
-    inventory = []  # store player inventory
+from Avatar import Avatar
 
-    #variables used for player attacking and possible items
+class Player(Avatar):
+
+    # magic = 20;
+
+    # should already inherit a name, health, magic values
     
     # initalize possible weapons each weapon has an array with min, max attack values
     wrench = [5.0, 8.0]  # main weapon has attack range of 0.1 to 5

@@ -1,34 +1,20 @@
 import math
 import random
 
-class Avatar:
+class Avatar():
 
     # attributes that every character should have
     name = None;
-    heath = None;
-    magic = None;
+    health = 20;
+    attack = 1;
+    defense = 0;
 
     # base constructor for object creation
-    def __init__(self, _name,_health,_magic):
+    def __init__(self, _name, _health, _attack, _defense):
         self.name = _name
         self.health = _health
-        self.magic = _magic 
-
-    def getName(self):
-        return self.name
-
-    def setName(self, _name):
-        self.name = _name
-
-    '''
-    HEALTH REGION
-    '''
-    def getHealth(self):
-        return self.monster_health
-    
-    def setHealth(self,health):
-        self.monster_health = health
-
+        self.attack = _attack
+        self.defense = _defense
 
     # this function takes two args (min and max) and returns a random number between them
     # this should take pretty low numbers so enemies arent broken
@@ -51,12 +37,14 @@ class Avatar:
             # return attack
             print('This action has %s points' % attack)
         return attack
-
     
 
     def toString(self):
-        return "my name is {},\nHealth: {}\nMagic: {}".format(self.name,
-                                                                self.health,
-                                                                self.magic
-                                                                )
+        return "my name is {},\nHealth: {}\nAttack: {}\nDefense: {}\n".format
+        (
+        self.name,
+        self.health,
+        self.attack,
+        self.defense
+        )
 
