@@ -6,7 +6,7 @@ class Monster(Avatar):
     aggro = 0 
 
     def __init__(self,name,health,attack,defense,aggro):
-        super(Avatar,self).__init__(name,health,attack,defense)
+        super().__init__(name,health,attack,defense)
         self.aggro = aggro
 
     '''
@@ -25,6 +25,15 @@ class Monster(Avatar):
     '''
     EXTERNAL METHODS
     ''' 
+
+    def toString(self):
+        return "my name is {},\nHealth: {}\nAttack: {}\nDefense: {}\n".format
+            (
+                self.name,
+                self.health,
+                self.attack,
+                self.defense
+            )
 
     
 
