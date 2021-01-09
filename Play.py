@@ -3,8 +3,8 @@ from Monster import Monster
 
 class play:
     
-    p = Player("larry",200,15,10)
-    m = Monster("suzy",100,10,20,0)
+    p = Player("Larry","Branch",100,10,5)
+    m = Monster("Monster",200,20,30,10)
 
-    #print(p.toString())
-    print(m.toString())
+    print(p.__str__())
+    print(m.__str__())

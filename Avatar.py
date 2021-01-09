@@ -4,10 +4,10 @@ import random
 class Avatar():
 
     # attributes that every character should have
-    name = None;
-    health = 20;
-    attack = 1;
-    defense = 0;
+    name = None
+    health = None
+    attack = None 
+    defense = None
 
     # base constructor for object creation
     def __init__(self, _name, _health, _attack, _defense):
@@ -37,7 +37,11 @@ class Avatar():
             # return attack
             print('This action has %s points' % attack)
         return attack
-    
+
+    # take damage from x amount of points
+    # this is done in a method for readibiltiy later on
+    def takeDamage(self,points):
+        self.health -= attacking(points)
 
     def __str__(self):
         return "my name is {},\nHealth: {}\nAttack: {}\nDefense: {}\n".format
