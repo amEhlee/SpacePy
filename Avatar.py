@@ -24,8 +24,10 @@ class Avatar():
         crit = False  # initalize crit chance varible
         attack = math.uniform(min_value, max_value)  # returns a random number between min and max
 
+        # Possible crit chance on every hit using randint
         if random.randint(0, 100) < 10:
             # 10% chance for a critical attack to occur
+            print("CRITICAL HIT")
             crit = True
 
         if (crit == True):
@@ -38,11 +40,11 @@ class Avatar():
             print('This action has %s points' % attack)
         return attack
 
-    # take damage from x amount of points
-    # this is done in a method for readibiltiy later on
+    # Process all damage taken to self and use attacking method from before 
     def takeDamage(self,points):
         self.health -= attacking(points)
 
+    # toString method returns values of all attribs
     def __str__(self):
         return "my name is {},\nHealth: {}\nAttack: {}\nDefense: {}\n".format
         (

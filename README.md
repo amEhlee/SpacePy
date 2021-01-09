@@ -12,3 +12,5 @@ Jan 5th 2021 -
     - Updated to include classes and parenting for player and monster classes
     - Addition of the avatar and playgame class where most objects inherit from 
     
+WEEKLY REPORTS
+*next due Sunday, January 10th 2021
