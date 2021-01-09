@@ -26,7 +26,34 @@ class Monster(Avatar):
     EXTERNAL METHODS
     ''' 
 
-    
+    def __str__(self):
+        return "my name is {},\nHealth: {}\nAttack: {}\nDefense: {}\n".format
+            (
+                
+                self.name,
+                self.health,
+                self.attack,
+                self.defense
+            )
 
-    
 
+
+
+    class Parent():
+        myvar = 0
+        x = 0
+        y = 0
+
+        def __init__(self):
+            self.x = 1 
+            self.y = 12 
+
+    class Child(Parent):
+        def __init__(self):
+            super().__init__()
+
+            # here you can access myvar like below.
+            print(self.myvar,self.x,self.y)
+
+    child = Child()
+    print(child.myvar)
