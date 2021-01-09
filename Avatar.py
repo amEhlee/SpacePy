@@ -39,12 +39,12 @@ class Avatar():
         return attack
     
 
-    def toString(self):
+    def __str__(self):
         return "my name is {},\nHealth: {}\nAttack: {}\nDefense: {}\n".format
         (
-        self.name,
-        self.health,
-        self.attack,
-        self.defense
+            self.name,
+            self.health,
+            self.attack,
+            self.defense
         )
 

@@ -26,14 +26,7 @@ class Monster(Avatar):
     EXTERNAL METHODS
     ''' 
 
-    def toString(self):
-        return "my name is {},\nHealth: {}\nAttack: {}\nDefense: {}\n".format
-            (
-                self.name,
-                self.health,
-                self.attack,
-                self.defense
-            )
+    
 
     
 

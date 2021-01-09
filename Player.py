@@ -2,7 +2,9 @@ from Avatar import Avatar
 
 class Player(Avatar):
 
-    # magic = 20;
+    __init__
+
+    magic = 20;
 
     # should already inherit a name, health, magic values
     
