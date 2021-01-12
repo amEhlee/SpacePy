@@ -1,11 +1,19 @@
 from Player import Player
 from Monster import Monster
+from time import sleep
+import sys
 
 '''
     holds the main story of the game and all key decision events
     all of this will be run later in the main method via startGame
 '''
 class SpacWorld:
+
+    # default constructor
+    def __init__(self):
+        # start the game at the creation of a new instance
+        self.start_game()
+
     # import outside code to make stuff work with less complexity
     from random import uniform, randint
     from time import sleep  # anytime you see sleep(i) stops the program for i seconds
@@ -70,43 +78,52 @@ class SpacWorld:
     def start_game(self):
         print('\n')
         # prints the introduction to the game and lets the user know whats going on
-        print_slow(
+        self.print_slow(
             '''You are a member of the EKS Atlas. A research vessel headed for the planet Jupitaa. When your ship was breeched by some strange alien force. 
             Your goal is now to find a way out of the ship while avoiding whatever creature got to rest'''
             , 0.1)
         print('\n')
-        sleep(text_read_speed)
-        characterCreation()
+        self.sleep(self.text_read_speed)
+        self.characterCreation()
 
-
+    # Character Creation
     def characterCreation(self):
+
+        # Process player decisions on Name 
         decision = input("what is the name of your character")
-        aPlayer.name = decision
+
+        # Apply player name decision
+        self.aPlayer.name = decision
+
+        # Process player decisions on Play style
         decision = input("what style of play of you have? (Choose a number!!)\n1: Offensive 100 health 25 attack 10 defense\n2: Defensive 150 Health, 15 attack 20 defense\n3. Neutral 125 Health 15 attack, 15 defense")
-        
-        #Process player stats decision
-        if(decision == 1):
-            aPlayer.health = 100
-            aPlayer.attack = 25
-            aPlayer.defense = 10
-        elif(decision == 2):
-            aPlayer.health = 150
-            aPlayer.attack = 15
-            aPlayer.defense = 25
-        elif(decision == 3):
-            aPlayer.health = 125
-            aPlayer.attack = 15
-            aPlayer.defense = 15
+
+        # Apply player stats decision
+        if(decision == '1'):
+            self.aPlayer.health = 100
+            self.aPlayer.attack = 25
+            self.aPlayer.defense = 10
+        elif(decision == '2'):
+            self.aPlayer.health = 150
+            self.aPlayer.attack = 15
+            self.aPlayer.defense = 25
+        elif(decision == '3'):
+            self.aPlayer.health = 125
+            self.aPlayer.attack = 15
+            self.aPlayer.defense = 15
         else:
             print("invalid input, retrying method...")
-            characterCreation()
+            self.characterCreation()
 
-        print_slow("Perfect!\n Be aware that weapons and Armor can also be found within the game that will help you")
-        print_slow("Here are your Player's total stats right now")
-        aPlayer.__str__()
-        print_slow("Have fun and hope you enjoy the game",text_read_speed)
-        sleep(text_read_speed)
-        storage_room()  # moves the story to the storage room function
+        # More responeses
+        self.print_slow("Perfect!\nBe aware that weapons and Armor can also be found within the game that will help you",0.1)
+        self.print_slow("Here are your Player's total stats right now",0.1)
+        self.aPlayer.__str__()
+        self.print_slow("Have fun and hope you enjoy the game",0.1)
+        self.sleep(self.text_read_speed)
+
+        # moves the story to the storage room function
+        self.storage_room(self.repeat_count)  
 
     # Hiding in the storage room
     def storage_room(self,repeat_count):
@@ -114,10 +131,10 @@ class SpacWorld:
             # if this is your first time do all this stuff
             print(
                 "You awake in what looks to be a storage room. Its cramped, cold and filled to the brim with boxes containing equipment, food, water and the like")
-            sleep(text_read_speed)
+            self.sleep(self.text_read_speed)
             print(
                 "You get up out of the mixture of cardboard and hard plastic and onto your feet. Your head hurts and you feel a consistent sense of dread. Other then your breathing things seem to be oddly quiet")
-            sleep(text_read_speed)
+            self.sleep(self.text_read_speed)
 
         elif(repeat_count == 1):
             # if this is your second time print all this stuff
@@ -173,19 +190,19 @@ class SpacWorld:
         # print a bunch of text with pauses in between
         print(
             "You exit the room and enter the large and now luminicent hallway. Though things seem different from what you remember...")
-        sleep(text_read_speed)
+        self.sleep(self.text_read_speed)
         print(
             "The lights are off and The hallway is devoid of any crew members. The walls have been caked in a strange unfamillar green gel which seem to be the source of the corridor's lime glow")
-        sleep(text_read_speed)
+        self.sleep(self.text_read_speed)
         print(
             "The ship docking area the only resonable exit off the ship is south of where you are. Though heavy steel doors block the passage.")
-        sleep(text_read_speed)
+        self.sleep(self.text_read_speed)
         print(
             "In order to get them back open you'll need to head to the front of the ship and release the backup power holding the doors shut")
-        sleep(text_read_speed)
+        self.sleep(self.text_read_speed)
         print(
             "\nUnable to go to south you go north towards the research area and medbay when you spot a lone spacesuit lying facedown on the ground. ")
-        sleep(text_read_speed)
+        self.sleep(self.text_read_speed)
         print("Its covered in that strange green goop and brings an aura of curiosity as well as fear")
 
         # decide whether to go and investigate the suit or move along
@@ -203,16 +220,16 @@ class SpacWorld:
         # print a bunch more plot with waits inbetween
         print('\n')
         print("You turn over and investigate the space suit making sure to avoid the gel")
-        sleep(text_read_speed)
+        self.sleep(self.text_read_speed)
         print(
             "Past the helmet you can see the suit itself is filled to the brim with that same green slime that seems to have consumed whatever used to be inside")
-        sleep(text_read_speed)
+        self.sleep(self.text_read_speed)
         # print what happened with a red color so you know you got hurt
         print(add_text_effect(effect['red'],
                             "as you try to take a closer the green goo bursts out of the helmet slightly burning your hand. From this you take 10 damage"))
         # decrease player health cause they made the wrong decision
-        aPlayer.health -= 10
-        print(("You now have {} points of health").format(aPlayer.health))
+        self.aPlayer.health -= 10
+        print(("You now have {} points of health").format(self.aPlayer.health))
         # move along to the next part of the story a fork in the path
         fork_1()
 

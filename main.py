@@ -4,4 +4,3 @@ from SpacWorld import SpacWorld
 
 class main:
     newworld = SpacWorld()
-    newWorld.
