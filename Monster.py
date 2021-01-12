@@ -4,7 +4,6 @@ class Monster(Avatar):
     # base monster variables
     aggro = 0 
 
-
     def __init__(self,mName,mHth,mAtk,mDef,mAggro):
         super().__init__(mName,mHth,mAtk,mDef)
         self.aggro = mAggro
@@ -13,7 +12,7 @@ class Monster(Avatar):
     MUTATORS
     '''
     #def addAggro # will play throughout dungeon
-    #def playRound #monster attack phase
+    #def playRound #monster attack phasew
 
 
     '''

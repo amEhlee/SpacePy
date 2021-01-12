@@ -13,6 +13,7 @@ class SpacWorld:
 
     # initalize miscellaneos
     text_read_speed = 1  # used for sleeping after text so I don't have to keep on setting it if I do change it
+    repeat_count = 0 # checks how many times a fuction repeats // used multiple times
     effect = {}  # initalize text global effect variables
 
     # adds specific effects to the text effect dictionary
@@ -59,15 +60,14 @@ class SpacWorld:
     a = ally
     e = enemy
     '''
-    //////////////////////// prompt player name here //////////////
-    aPlayer = Player()
+    aPlayer = Player(None,None,None,None,None)
     eMonster = Monster("Monster",200,20,20,0)
 
     '''
     Story Options
     '''
     # starts the game
-    def start_game():
+    def start_game(self):
         print('\n')
         # prints the introduction to the game and lets the user know whats going on
         print_slow(
@@ -76,12 +76,41 @@ class SpacWorld:
             , 0.1)
         print('\n')
         sleep(text_read_speed)
+        characterCreation()
+
+
+    def characterCreation(self):
+        decision = input("what is the name of your character")
+        aPlayer.name = decision
+        decision = input("what style of play of you have? (Choose a number!!)\n1: Offensive 100 health 25 attack 10 defense\n2: Defensive 150 Health, 15 attack 20 defense\n3. Neutral 125 Health 15 attack, 15 defense")
+        
+        #Process player stats decision
+        if(decision == 1):
+            aPlayer.health = 100
+            aPlayer.attack = 25
+            aPlayer.defense = 10
+        elif(decision == 2):
+            aPlayer.health = 150
+            aPlayer.attack = 15
+            aPlayer.defense = 25
+        elif(decision == 3):
+            aPlayer.health = 125
+            aPlayer.attack = 15
+            aPlayer.defense = 15
+        else:
+            print("invalid input, retrying method...")
+            characterCreation()
+
+        print_slow("Perfect!\n Be aware that weapons and Armor can also be found within the game that will help you")
+        print_slow("Here are your Player's total stats right now")
+        aPlayer.__str__()
+        print_slow("Have fun and hope you enjoy the game",text_read_speed)
+        sleep(text_read_speed)
         storage_room()  # moves the story to the storage room function
 
     # Hiding in the storage room
-    def storage_room():
-        repeat_count  # checks how many times the function repeats
-        if (repeat_count == 0):
+    def storage_room(self,repeat_count):
+        if(repeat_count == 0):
             # if this is your first time do all this stuff
             print(
                 "You awake in what looks to be a storage room. Its cramped, cold and filled to the brim with boxes containing equipment, food, water and the like")
@@ -90,7 +119,7 @@ class SpacWorld:
                 "You get up out of the mixture of cardboard and hard plastic and onto your feet. Your head hurts and you feel a consistent sense of dread. Other then your breathing things seem to be oddly quiet")
             sleep(text_read_speed)
 
-        elif (repeat_count == 1):
+        elif(repeat_count == 1):
             # if this is your second time print all this stuff
             # random chance to find healing syringe in this room that can be used in battles
             if (randint(0, 100) < 50):
@@ -108,20 +137,20 @@ class SpacWorld:
                 print(
                     "In the mass of cardboard and scraps you find nothing of use. Outside of the storage room things are still oddly quiet")
 
-        elif (repeat_count == 2):
+        elif(repeat_count == 2):
             # if this is your third time print this
             print("nothing seems to of changed outside... or in the room. Maybe its time to go..?")
 
-        elif (repeat_count == 3):
+        elif(repeat_count == 3):
             # if this is your forth time print this
             print(
                 "Suddenly a thundering crash like a glass dish falling breaks the silence outside the door, followed by a single pair of foot steps that get quieter as something rushes away")
-            print("the silence resumes and you feel somewhat safer")
-            # since you waited long enough the monster goes away and is no longer suspicious
-            global monster_aggro
-            monster_aggro -= 50  # this will decrease monster health later cause it no longer suspects you
+            print("the silence resumes... For some reason you feel just a little bit safer")
 
-        elif (repeat_count >= 4):
+            # Waited long enough so monster no longer suspects you. reduce aggro by 20
+            eMonster.aggro += 20 
+
+        elif(repeat_count >= 4):
             # nothing is left in the room so continue printing this
             print("The only thing that remains is silence")
 
@@ -170,7 +199,7 @@ class SpacWorld:
             # if they don't move along
             fork_1()
 
-    def investigate_suit():
+    def investigate_suit(self):
         # print a bunch more plot with waits inbetween
         print('\n')
         print("You turn over and investigate the space suit making sure to avoid the gel")
@@ -182,14 +211,10 @@ class SpacWorld:
         print(add_text_effect(effect['red'],
                             "as you try to take a closer the green goo bursts out of the helmet slightly burning your hand. From this you take 10 damage"))
         # decrease player health cause they made the wrong decision
-        player.health -= 10
-        print(("You now have {} points of health").format(player_health))
+        aPlayer.health -= 10
+        print(("You now have {} points of health").format(aPlayer.health))
         # move along to the next part of the story a fork in the path
         fork_1()
 
-    def fork_1():
+    def fork_1(self):
         print("end for now :Printing Player Stats")
-
-
-    
-
