@@ -11,6 +11,32 @@ class Player(Avatar):
         super().__init__(_name,_hth,_atk,_def)
         self.weapon = _weapon
 
+    # other methods
+    # adds items to inventory
+    def ItemAdd(self,itemName,itemRange):
+        #add new items to list
+        self.inventory[itemName] = itemRange
+
+    def printItems(self,):
+        for event in self.inventory:
+            # whole value 
+            rangeValue = self.inventory.get(event)
+
+            def printItems():
+                # print name
+                print("\nItem Name = {}".format(event))
+                print("Min value = {}".format(rangeValue[0]))
+                print("Max value = {}".format(rangeValue[1]))
+                print("Item Amount = {}".format(rangeValue[2]))
+
+    def useItem(self, which):
+        '''
+        which == item use the item range and remove item
+        also consider adding an item class which will be able to better point at min max and amount values
+        items are complicated right now due to their use of long keys and uncommented embedded lists to match
+        dont make program too complicated so maybe consider old system of appending 
+        '''
+
     # toString method 
     def __str__(self):
         return("Hello my name is {}\nI am carrying a {} for a weapon\nHealth: {}\nAttack: {}\nDefense:{}\n\n".format(

@@ -143,9 +143,11 @@ class SpacWorld:
                 # print text
                 print(add_text_effect(effect["green"],
                                     "In one of the cardboard boxes you find a syringe filled with a green liquid! This could can probably be used to heal you later on"))
+                
                 # add stuff to inventory and show what you already have
-                inventory.append("Green Syringe")
+                self.aPlayer.inventory.append("Green Syringe")
                 print(("in your inventory you got:" + '{}').format(inventory))
+                
                 # print text
                 print("Things outside haven't changed")
 

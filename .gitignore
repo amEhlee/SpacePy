@@ -1,5 +1,5 @@
-test.py
-test2.py
-test3.py
+allmaths.py
+allUnitTests.py
+allobjs.py
 .vscode/settings.json
 __pycache__/
