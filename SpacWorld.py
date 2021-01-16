@@ -236,6 +236,388 @@ class SpacWorld:
         # move along to the next part of the story a fork in the path
         self.fork_1()
 
-    def fork_1(self):
-        print("end for now :Printing Player Stats")
-        print(self.aPlayer.__str__())
+    def fork_1():
+        # next part in story fork in the path
+        # print lots of text with more sleeps
+        print(
+            "\n Ahead of you now stands two paths: The first heads directly to the research sector and the second follows a hallway around it")
+        sleep(text_read_speed)
+        print(
+            "Though you it might be a good idea to explore the research area for anything useful taking the hallway around it might be faster and much less dangerous")
+        sleep(text_read_speed)
+
+        # make the user decide on what path to take
+        decision = input(
+            "\n \033[0;36mWhat path do you want to take? \n1. To the research sector! \n2. The research sector is too dangerous seems like a better idea to go around it \033[0m")
+        if (decision == "1"):
+            # move to research sector
+            research_sector()
+
+        elif (decision == "2"):
+            # alternative to research sector
+            hallway_2()
+
+
+    def hallway_2():
+        # this is the hallway alternative to the research_sector
+        # print text with waits
+        print('\n')
+        print(
+            "This hallway seems empty of life but has an eccesive amount of green gel hanging from the walls and ceiling vents")
+        sleep(text_read_speed)
+        # print text in red to show user did something wrong and took damage
+        print(add_text_effect(effect['red'],
+                            "As you make your way through the hallway from above you the ceiling collapses from goo weighing it down dealing 20 points of damage"))
+        sleep(text_read_speed)
+        # decrease and print the player's current health
+        global player_health
+        player_health -= 20
+        print(("You now have {} points of health").format(player_health))
+        # move to next part of the game
+        fork_2()
+
+
+    def research_sector():
+        # this is the research sector part of the game
+        # print text with waits inbetween
+        print('\n')
+        print(
+            "The research sector is full of the obvious, various shapes and sizes of vials, bunsen burners, microscopes and bottles of God knows what. As well as the green gel which drips from the ceiling vents every few seconds")
+        sleep(text_read_speed)
+        print("While searching the room you spot some gel land in a empty vial above a live bunsen burner.")
+        sleep(text_read_speed)
+
+        # show text in yellow to show that it is of value
+        # lets the player know the alien is weak to heat (hopefully)
+        print(add_text_effect(effect['yellow'],
+                            "the heat from the flame causes the gel to come to a boil and evaporate. In response to this the surronding gel goes lifeless"))
+        sleep(text_read_speed)
+
+        # decide whether to pick up the heat ray or not
+        decision = input(add_text_effect(effect['cyan'],
+                                        "On top of a nearby desk you spot a heat ray \n1. Pick it up \n2. leave it alone might be dangerous \n"))
+
+        if (decision == '1'):
+            # print text of trying heat ray with waits inbetween
+            print('\nYou pick up and try to use the heat ray but it seems to be either broken or out of juice')
+            sleep(text_read_speed)
+            print('You leave it alone and move on')
+            # move on to next part of game
+            fork_2()
+
+        elif (decision == '2'):
+            # print text and move on
+            print('You leave it alone and move on')
+            fork_2()
+
+
+    def fork_2():
+        # asks if the user want to go to either to medbay or alternative hallway
+        print(
+            "There is another fork in the road either go to the medbay which oozes with green gel from under the door or the alternative path around it which might be safer as well as faster ")
+        sleep(text_read_speed)
+        # lets the player decide where to go next
+        decision = input(
+            add_text_effect(effect['cyan'], "\n1. Go to medbay \n2. Take the hallway around which might be safer"))
+
+        if (decision == '1'):
+            # goes down medbay route
+            medbay()
+
+        elif (decision == '2'):
+            # goes down alternative to medbay route
+            hallway_3()
+
+
+    def medbay():
+        # print text for medbay route with wait's inbetween print statemnents
+        print('\n')
+        print("The medbay looks like any old regular hospital. White beds and first aid kits line the room")
+        sleep(text_read_speed)
+        print(
+            'In the room there are also a number of spacesuits on the ground, beds, everywhere! They are all filled with gel which based on instinct you stay away from')
+        sleep(text_read_speed)
+        # let the user know they picked up a healing syringe in green text green = good
+        print(
+            add_text_effect(effect['green'], 'Lying on a matress you see a green health syringe which you take for later'))
+        inventory.append("Green Syringe")
+        sleep(text_read_speed)
+        # lets the user know what they have in their inventory
+        print(("in your inventory you got:" + '{}').format(inventory))
+        sleep(text_read_speed)
+        # go to next part of the game(cockpit)
+        cockpit()
+
+
+    def hallway_3():
+        # alternative route from fork in road
+        # print text and go to next part of the game(cockpit)
+        print('\n')
+        print(
+            "The hallway is filled with nothing but silence. You can tell the green jelly has taken over some bathrooms nearby so no getting near that.")
+        sleep(text_read_speed)
+        cockpit()
+
+
+    def cockpit():
+        # part of the game where the player is in the cockpit/control room of the ship
+        # print more plot with waits inbetween
+        print('\n')
+        print('You enter the cockpit of the ship. On its walls are monitors of various sizes')
+        sleep(text_read_speed)
+        print('You turn on the main screen and enter the password to open the ship docking sector')
+        sleep(text_read_speed)
+        print("words flash on the screen saying" + "\033[0;33m \033[5m SHIP DOCKING SECTOR NOW OPEN.\033[0m")
+        sleep(text_read_speed)
+        print(
+            'You turn off the screen and search the room. On a nearby table you find a large wrench which might serve as a good weapon \n')
+        sleep(text_read_speed)
+        # decision to pick up the wrench or not
+        decision = input(
+            add_text_effect(effect['cyan'], "Do you pick up the wrench \n1. Pick up the wrench \n2. leave it alone"))
+
+        if (decision == '1'):
+            # if the player chooses to pick up the wrench add it as their main weapon
+            # this weapon will be used for combat later on
+            print('\n')
+            print("You now have the wrench as your main weapon")
+            sleep(text_read_speed)
+            global weapon
+            weapon = wrench
+            # continue the scene in the cockpit
+            cockpit_continued()
+
+        elif (decision == '2'):
+            # continue the scene in the cockpit if they don't pick it up
+            cockpit_continued()
+
+
+    def cockpit_continued():
+        # print more text with waits inbetween
+        print(
+            'You also spot below the large monitor a large red button trapped in a glass case with text on it saying "SELF DESTRUCT"')
+        sleep(text_read_speed)
+        print("It might be able to take out the alien on this ship no gurantee that it won't take you along too though")
+        sleep(text_read_speed)
+        # decide whether or not to press the button that activates self destruct sequence
+        decision = input(add_text_effect(effect['red'],
+                                        "\nDo you press the button? \n1. Activate self destruct button \n2. Leave it alone and move on"))
+
+        if (decision == '1'):
+            # moves to self destruct sequence part of game
+            self_destruct()
+
+        elif (decision == '2'):
+            # moves to next part of the game
+            explosion()
+
+
+    def self_destruct():
+        # moves to self destruct sequence part of the game
+        print('\n')
+        # increases monster aggro cause you chose the right option
+        global monster_aggro
+        monster_aggro += 100
+
+        # print flashing red text for effect
+        print(
+            'As you pound the bottom down every screen lights up with the words' + '\033[1m \033[0;31m \033[6m WARNING!  WARNING! SELF DESTRUCT SEQUENCE ACTIVATED! WARNING!  WARNING!\033[0m')
+        sleep(text_read_speed)
+        print('followed by a timer that starts counting down:')
+        sleep(text_read_speed)
+
+        # for loop that prints a timer
+        timer_countdown = ['3:00', '2:59', '2:58', '...']
+        for i in range(len(timer_countdown)):
+            print(timer_countdown[i])
+            i += 1
+            sleep(1)
+
+        # moves to next part of the game
+        explosion()
+
+
+    def explosion():
+        # print more plot with waits inbetween
+        print('\n')
+        print('As you rush your way out the room you hear a loud explosion and the ship begins to sway back and forth')
+        sleep(text_read_speed)
+        print('You also see more of the green slime collapse into the room and begin to chase you')
+        sleep(text_read_speed)
+        print(
+            'You sprint past the past the medbay, research sector and hallways as waves of sludge covers the path behind you')
+        sleep(text_read_speed)
+        print("You finally arrive back where you started and bolt through the now open ship dock steel doors")
+        sleep(text_read_speed)
+        print(
+            'As you attempt to make it to the nearest escape ship the mass of slime swerves around you and blocks your path')
+        sleep(text_read_speed)
+        print('The lime slime forms a mass of jelly infront of you with one eye that stares in your direction')
+        sleep(text_read_speed)
+
+        # adds the monster's aggro (how much it hates you ) to its health based on old decisions
+        global monster_health
+        monster_health += monster_aggro
+
+        # Enter combat with the slime
+        print("You now enter combat with the slime alien!")
+        print('\n')
+        battle()
+
+
+    def battle():
+        # starts off the fight scene in this game
+        global player_health
+        global monster_health
+
+        while (monster_health > 0 and player_health > 0):
+            # shows how much health you and the monster have at the start of your turns
+            print(("You have {} health ").format(player_health))
+            print(("The monster has {} health").format(monster_health))
+
+            # lets the player choose what action they want to do in this battle
+            battle_action = 0
+            battle_action = input((
+                                '\033[0;36m What do you want to do? \n1. Attack with weapon \n2. Challenge to rock paper scissors match  \n3. Use health syringe (inventory contains {})\n4. Heal \033[0m').format(
+                inventory))
+
+            if (battle_action == '1'):
+                # if you decide to attack with your weapon do all this stuff
+                print("You attack the monster with your weapon")
+                sleep(text_read_speed)
+
+                # store damage of the wrench in a variable for use when printing text
+                damage_dealt = attacking(wrench)
+
+                # show how much damage you deal
+                print(("You deal {} damage").format(damage_dealt))
+                sleep(text_read_speed)
+
+                # decrease the monster's health based on this damage
+                monster_health -= damage_dealt
+                print('\n')
+
+                # have the monster attack back and decrease the player's health
+                monster_damage_dealt = attacking(monster_attack)
+                print(("The monster deals {} damage").format(monster_damage_dealt))
+                player_health -= monster_damage_dealt
+
+                # continue the battle
+                battle()
+
+            elif (battle_action == '2'):
+                # challenge the monster to rock paper scissors loser takes damage
+                print("\n")
+                print("you challenge the monster to a match of rock paper scissors, which it agrees to of course")
+                sleep(text_read_speed)
+                # start the rock paper scissors game
+                play_RPS()
+
+            elif ((battle_action == '3') and (len(inventory) > 0)):
+                # as long as the player has a syringe in their inventory they can heal
+                print("\n")
+                print("You use a health sringe and get 20 damage points restored")
+
+                # remove used syringe's from inventory
+                del inventory[0]
+                sleep(text_read_speed)
+                # increase the player's inventory
+                player_health += 20
+                print("\n")
+                # continue the battle
+                battle()
+
+            elif (battle_action == '4'):
+                print('\n')
+                # allows the player to heal without a syringe if they need to
+                print("meditate quickly and attempt to regen your health")
+                sleep(text_read_speed)
+                # shouldn't really be called attacking its useful though for adding + decreasing values
+                heal = attacking([0, 3])
+                print(("you heal {} damage").format(heal))
+                sleep(text_read_speed)
+                player_health += heal
+
+                # monster gets a turn to attack
+                monster_damage_dealt = attacking(monster_attack)
+                print(("The monster deals {} damage").format(monster_damage_dealt))
+                sleep(text_read_speed)
+                player_health -= monster_damage_dealt
+
+                # continue the battle
+                print('\n')
+                battle()
+
+
+            else:
+                # if they have nothing print this message and continue the battle
+                print("\n")
+                print("You have nothing in your inventory >:C")
+                sleep(text_read_speed)
+                print("\n")
+                battle()
+
+        ending()
+
+
+    def ending():
+        # decides what ending the player got
+        if (monster_health <= 0):
+            # if the monster died move on
+            print("\n")
+
+            if (monster_aggro >= 100):
+                # checks based on monster's aggro cause that increses by 100 when you press the switch
+                # if the monster died AND you activated the self destruct sequence go to the best ending
+                win_situation_good()
+
+            else:
+                # if they didn't press the switch BUT defeated the monster go to the neutral ending
+                win_sitation_neutral()
+
+        elif (player_health <= 0):
+            # if they lost the battle print this sitation
+            lose_sitation()
+
+
+    def win_situation_good():
+        # print the best ending to the game and exit from the game
+        print(('\n') * 3)
+        print(add_text_effect(effect['blue'],
+                            "After you defeat the slime you quickly enter a nearby space craft and blast off while loud explosions resound behind you"))
+        sleep(text_read_speed)
+        print(add_text_effect(effect['blue'], "The explosion destroys the Atlas and no life signs remain "))
+        sleep(text_read_speed)
+        # print the text letter by letter
+        print_slow(add_text_effect(effect['blue'], "You got the best ending the galaxy is saved", 0.1))
+        exit()
+
+
+    def win_sitation_neutral():
+        # print the neutral ending's text and exit from the game
+        print(('\n') * 3)
+        print(add_text_effect(effect['blue'],
+                            "After you defeat the slime you quickly enter a nearby spaceship and blast off of the EKS Atlas"))
+        sleep(text_read_speed)
+        print(add_text_effect(effect['blue'],
+                            "You win! You managed to escape from the spaceship with your life though as the ship disappears from your view you can't help but feel unsettled."))
+        sleep(text_read_speed)
+
+        # print the text letter by letter
+        print_slow(
+            "Years later you hear news that the planet jupitaa had been taken over by some strange slime but it doesn't seem like its stopping there....",
+            0.1)
+        print_slow("YOU GOT THE NEUTRAL ENDING", 0.1)
+        exit()
+
+
+    def lose_sitation():
+        # print the loss ending's text and exit from the game
+        print(('\n') * 3)
+        print(add_text_effect(effect['blue'],
+                            "The slime quickly dispatches you like it did to the rest of the crew. You feel moisture seep into your spacesuit and you pass out shortly after"))
+        sleep(text_read_speed)
+        print(add_text_effect(effect['blue'], "You lose. The galaxy has been taken over by slime and no life signs remain"))
+        # print the text letter by letter
+        print_slow("YOU GOT THE WORST ENDING", 0.1)
+        exit()
