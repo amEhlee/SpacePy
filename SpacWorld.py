@@ -21,6 +21,7 @@ class SpacWorld:
 
     # initalize miscellaneos
     text_read_speed = 1  # used for sleeping after text so I don't have to keep on setting it if I do change it
+    text_slow_speed = 0 # used for the print slow method 
     repeat_count = 0 # checks how many times a fuction repeats // used multiple times
     effect = {}  # initalize text global effect variables
 
@@ -81,7 +82,7 @@ class SpacWorld:
         self.print_slow(
             '''You are a member of the EKS Atlas. A research vessel headed for the planet Jupitaa. When your ship was breeched by some strange alien force. 
             Your goal is now to find a way out of the ship while avoiding whatever creature got to rest'''
-            , 0.1)
+            , self.text_slow_speed)
         print('\n')
         self.sleep(self.text_read_speed)
         self.characterCreation()
@@ -116,10 +117,10 @@ class SpacWorld:
             self.characterCreation()
 
         # More responeses
-        self.print_slow("Perfect!\nBe aware that weapons and Armor can also be found within the game that will help you",0.1)
-        self.print_slow("Here are your Player's total stats right now",0.1)
+        self.print_slow("Perfect!\nBe aware that weapons and Armor can also be found within the game that will help you", self.text_slow_speed)
+        self.print_slow("Here are your Player's total stats right now", self.text_slow_speed )
         self.aPlayer.__str__()
-        self.print_slow("Have fun and hope you enjoy the game",0.1)
+        self.print_slow("\n\nHave fun and hope you enjoy the game\n\n\n", self.text_slow_speed)
         self.sleep(self.text_read_speed)
 
         # moves the story to the storage room function
@@ -139,14 +140,14 @@ class SpacWorld:
         elif(repeat_count == 1):
             # if this is your second time print all this stuff
             # random chance to find healing syringe in this room that can be used in battles
-            if (randint(0, 100) < 50):
+            if (self.randint(0, 100) < 50):
                 # print text
-                print(add_text_effect(effect["green"],
+                print(self.add_text_effect(self.effect["green"],
                                     "In one of the cardboard boxes you find a syringe filled with a green liquid! This could can probably be used to heal you later on"))
                 
                 # add stuff to inventory and show what you already have
                 self.aPlayer.inventory.append("Green Syringe")
-                print(("in your inventory you got:" + '{}').format(inventory))
+                print(("in your inventory you got:" + '{}').format(self.aPlayer.inventory))
                 
                 # print text
                 print("Things outside haven't changed")
@@ -167,7 +168,7 @@ class SpacWorld:
             print("the silence resumes... For some reason you feel just a little bit safer")
 
             # Waited long enough so monster no longer suspects you. reduce aggro by 20
-            eMonster.aggro += 20 
+            self.eMonster.aggro += 20 
 
         elif(repeat_count >= 4):
             # nothing is left in the room so continue printing this
@@ -178,16 +179,16 @@ class SpacWorld:
         if (decision == "1"):
             # move on to the next part of the game
             repeat_count = 0  # checks how many times the function repeats
-            hallway_1()
+            self.hallway_1()
 
         else:
             # run this function again but not with the same text
             print('\n')
             repeat_count += 1  # checks how many times the function repeats
-            storage_room()
+            self.storage_room(repeat_count)
 
 
-    def hallway_1():
+    def hallway_1(self):
         print('\n')
         # print a bunch of text with pauses in between
         print(
@@ -212,11 +213,11 @@ class SpacWorld:
             "\n \033[0;36mDo you go over and investigate the suit? \n1. Yes maybe you could find out more about that sludge \n2. Not with all the green sludge covering it! \033[0m")
         if (decision == '1'):
             # if they choose to check the suit move to that function
-            investigate_suit()
+            self.investigate_suit()
 
         elif (decision == '2'):
             # if they don't move along
-            fork_1()
+            self.fork_1()
 
     def investigate_suit(self):
         # print a bunch more plot with waits inbetween
@@ -227,13 +228,14 @@ class SpacWorld:
             "Past the helmet you can see the suit itself is filled to the brim with that same green slime that seems to have consumed whatever used to be inside")
         self.sleep(self.text_read_speed)
         # print what happened with a red color so you know you got hurt
-        print(add_text_effect(effect['red'],
-                            "as you try to take a closer the green goo bursts out of the helmet slightly burning your hand. From this you take 10 damage"))
+        print(self.add_text_effect(self.effect['red'],
+            "as you try to take a closer the green goo bursts out of the helmet slightly burning your hand. From this you take 10 damage"))
         # decrease player health cause they made the wrong decision
         self.aPlayer.health -= 10
         print(("You now have {} points of health").format(self.aPlayer.health))
         # move along to the next part of the story a fork in the path
-        fork_1()
+        self.fork_1()
 
     def fork_1(self):
         print("end for now :Printing Player Stats")
+        print(self.aPlayer.__str__())

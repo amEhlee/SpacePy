@@ -3,7 +3,7 @@ from Avatar import Avatar
 class Player(Avatar):
 
     # initalize player variables
-    inventory = {} # player inventory
+    inventory = [] # player inventory
     weapon = "" # might be a dicitonary later storing name : damage stuff
 
     #initalize constructor
