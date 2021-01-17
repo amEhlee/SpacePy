@@ -14,3 +14,16 @@ Jan 5th 2021 -
     
 WEEKLY REPORTS
 *next due Sunday, January 10th 2021
+
+Jan 17th 2021 -
+    ADDITIONS
+        - Major changes to syntax and added the rest of the story. MAJOR CHANGE!!!
+        - All except battle system are now in working order!
+
+    TODO
+        - Renovate ingame battle system
+        - Improv player functions/methods as well as possible dedicated inventory system?
+        - change colored text 
+        - consider improving dialogue and dialogue options
+        - consider use of pygame in workign to make this a bit more of game and not just console based 
+        - consider addtions to monster functions and creation of smaller monsters
