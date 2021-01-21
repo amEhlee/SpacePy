@@ -11,14 +11,15 @@ Since its one of my first times coding im just going back to update it now so ig
 Jan 5th 2021 -
     - Updated to include classes and parenting for player and monster classes
     - Addition of the avatar and playgame class where most objects inherit from 
-    
-WEEKLY REPORTS
-*next due Sunday, January 10th 2021
 
 Jan 17th 2021 -
     ADDITIONS
         - Major changes to syntax and added the rest of the story. MAJOR CHANGE!!!
         - All except battle system are now in working order!
+        
+January 24 2021 -
+    Additions
+        -
 
     TODO
         - Renovate ingame battle system
