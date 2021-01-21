@@ -1,4 +1,5 @@
 from Avatar import Avatar
+from Item import Item
 
 class Player(Avatar):
 
@@ -13,9 +14,10 @@ class Player(Avatar):
 
     # other methods
     # adds items to inventory
-    def ItemAdd(self,itemName,itemRange):
+    def ItemAdd(self,itemName,itemDescription,itemRange):
+        newItem = Item(itemName,itemDescription,itemRange,1,None)
         #add new items to list
-        self.inventory[itemName] = itemRange
+        self.inventory.append(newItem)
 
     def printItems(self,):
         for event in self.inventory:
