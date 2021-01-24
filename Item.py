@@ -22,4 +22,7 @@ class Item:
         self.iType = _iType
         self.value = _value
         self.amount = _amount
+
+    def __str__(self):
+        return "Name: {},\nDescription: {},\nValue: {},\nAmount: {}".format(self.name,self.description,self.value,self.amount)
         

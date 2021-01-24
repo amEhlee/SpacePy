@@ -19,17 +19,11 @@ class Player(Avatar):
         #add new items to list
         self.inventory.append(newItem)
 
-    def printItems(self,):
-        for event in self.inventory:
+    def printItems(self):
+    
+        for items in self.inventory:
             # whole value 
-            rangeValue = self.inventory.get(event)
-
-            def printItems():
-                # print name
-                print("\nItem Name = {}".format(event))
-                print("Min value = {}".format(rangeValue[0]))
-                print("Max value = {}".format(rangeValue[1]))
-                print("Item Amount = {}".format(rangeValue[2]))
+            print(items, "\n")
 
     def useItem(self, which):
         '''
