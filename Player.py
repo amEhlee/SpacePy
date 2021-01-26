@@ -12,12 +12,31 @@ class Player(Avatar):
         super().__init__(_name,_hth,_atk,_def)
         self.weapon = _weapon
 
-    # other methods
-    # adds items to inventory
+    def ItemAdd(self,i):
+        print("item added")
+
     def ItemAdd(self,itemName,itemDescription,itemRange):
-        newItem = Item(itemName,itemDescription,itemRange,1,None)
-        #add new items to list
-        self.inventory.append(newItem)
+        '''Quick function to add items to inventory while adding to the AMOUNT of similar items'''
+        print("item created")
+
+        # initalize variables
+        newItem = Item(itemName,itemDescription,itemRange,1,None) # new item to be inputted
+        foundItem = False # track if item was found or not 
+
+        # Try to find if the item already exists. If add to AMOUNT of that item
+        for items in self.inventory:
+            currentItemName = self.inventory[self.inventory.index(items)].name
+
+            # ignore case and check if name of both items match
+            if(currentItemName.lower() == itemName.lower()):
+                # if item already exists add to count
+                foundItem = True
+                self.inventory[self.inventory.index(items)].amount += 1
+                break
+
+        # if the item was never found in the list add to the list
+        if(foundItem != True):
+            self.inventory.append(newItem)
 
     def printItems(self):
     

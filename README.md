@@ -19,7 +19,16 @@ Jan 17th 2021 -
         
 January 24 2021 -
     Additions
-        -
+        - creaiton of item class
+        - some cleanup of code
+    
+    NOTES
+        - Not much done should work harder this week
+
+January 31st
+
+    Additions
+        - 
 
     TODO
         - Renovate ingame battle system
