@@ -1,23 +1,39 @@
 from Avatar import Avatar
 from Item import Item
 
-class Player(Avatar):
+class Player(Avatar):    
+
+    ''' POSSIBLE INVSERTIONS
+    # initalize possible weapons each weapon has an array with min, max attack values
+    wrench = [5.0, 8.0]  # main weapon has attack range of 0.1 to 5
+    heat_ray = [0.1, 10]  # was going to be used as alternative stronger weapon ran out of time
+    punch = [0.1, 5.0]  # default weapon
+
+    # set the current weapon to use in this case player starts unarmed
+    weapon = punch  # current weapon in use
+    '''
 
     # initalize player variables
     inventory = [] # player inventory
-    weapon = "" # might be a dicitonary later storing name : damage stuff
+
+    # More on stats -///-: possible move to avatar class?
+    weaponName = "" # might be a dicitonary later storing name : damage stuff
+    weaponValues = None # damage range for weapon -///-: rennovated into inventory like system later?
+    ArmorName = "" # might be a dicitonary later storing name : damage stuff
+    ArmorValues = None # damage range for weapon -///-: rennovated into inventory like system later?
+
 
     #initalize constructor
     def __init__(self, _name, _weapon, _hth, _atk, _def):
         super().__init__(_name,_hth,_atk,_def)
         self.weapon = _weapon
 
-    def ItemAdd(self,i):
-        print("item added")
-
+    '''
+        REGION: ITEMS AND STATS
+    '''
+    #-///-:
     def ItemAdd(self,itemName,itemDescription,itemRange):
         '''Quick function to add items to inventory while adding to the AMOUNT of similar items'''
-        print("item created")
 
         # initalize variables
         newItem = Item(itemName,itemDescription,itemRange,1,None) # new item to be inputted
@@ -38,19 +54,63 @@ class Player(Avatar):
         if(foundItem != True):
             self.inventory.append(newItem)
 
-    def printItems(self):
-    
-        for items in self.inventory:
-            # whole value 
-            print(items, "\n")
-
-    def useItem(self, which):
+    def useItem(self, itemName):
         '''
         which == item use the item range and remove item
         also consider adding an item class which will be able to better point at min max and amount values
         items are complicated right now due to their use of long keys and uncommented embedded lists to match
         dont make program too complicated so maybe consider old system of appending 
         '''
+        # If item is found in table buff player and decrease amount of item
+        for items in self.inventory:
+            currentItemName = self.inventory[self.inventory.index(items)].name
+
+            # ignore case and check if name of both items match
+            if(currentItemName.lower() == itemName.lower()):
+                # if item already exists decrease count and use the item
+                foundItem = self.inventory[self.inventory.index(items)]
+                foundItem.amount -= 1
+
+                # apply the item to play stats
+                applyItem(foundItem)
+
+                # Check if we ran out of that item
+                if(foundItem.amount == 0):
+                    # if so remove it from list 
+                    self.inventory.remove(foundItem)
+
+                # We're done here. Break outta the loop
+                break
+
+    def applyItem(self,item):
+        # check if its armor 
+        if(item.type == "armor"):
+            pass
+        # check if its a weapon
+        elif(item.type == "weapon"):
+            player.weapon = item.name
+        # check if its a consumable
+        elif(item.type == "consumable"):
+            pass
+        
+
+    def printItems(self):
+        '''Quick function that iterates through and prints all items and equipment in inventory'''
+        print("--------------ITEMS--------------")
+
+        # check if user has items
+        if(not self.inventory):
+            # no items? print this
+            print("You have no items in your inventory")
+        else:
+            # items? print this 
+            for items in self.inventory:
+                print(items, "\n")
+                print("----------------------------")
+
+    '''
+        END REGION ITEMS AND STATS
+    '''
 
     # toString method 
     def __str__(self):
@@ -61,15 +121,3 @@ class Player(Avatar):
             self.attack,
             self.defense
             ))
-
-    
-    '''
-    # initalize possible weapons each weapon has an array with min, max attack values
-    wrench = [5.0, 8.0]  # main weapon has attack range of 0.1 to 5
-    heat_ray = [0.1, 10]  # was going to be used as alternative stronger weapon ran out of time
-    punch = [0.1, 5.0]  # default weapon
-
-    # set the current weapon to use in this case player starts unarmed
-    weapon = punch  # current weapon in use
-    '''
-
