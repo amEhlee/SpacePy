@@ -28,7 +28,10 @@ January 24 2021 -
 January 31st
 
     Additions
-        - 
+        - Item and Inventory System now working
+        - Player is now able to use items and has a workable inventory system
+        - Player now has dedicated weapon and armor stats
+        - Need to adjust SpacWorld code for inclusion of an inventory TODO tomorrow 
 
     TODO
         - Renovate ingame battle system
