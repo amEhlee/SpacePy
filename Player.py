@@ -1,5 +1,6 @@
 from Avatar import Avatar
 from Item import Item
+import math
 
 class Player(Avatar):    
 
@@ -85,13 +86,23 @@ class Player(Avatar):
     def applyItem(self,item):
         # check if its armor 
         if(item.type == "armor"):
-            pass
+            self.armorName = item.name
+            self.armorValues = item.value
         # check if its a weapon
         elif(item.type == "weapon"):
-            player.weapon = item.name
-        # check if its a consumable
+            self.weaponName = item.name
+            self.weaponValues = item.value
+        # check if its a consumable -///-: ignore case
         elif(item.type == "consumable"):
-            pass
+            # only healing items for now so ill just factor for those
+            # calculate how much to heal the player for 
+            amount = math.uniform(item.value[0], item.value[1])
+
+            # add to player health by certain amount #VALUES should be between min and max ranges specified in values list per item 
+            self.health += amount * 10
+
+            # return a message indictating health             
+            print('This action has %s points' % amount)
         
 
     def printItems(self):
