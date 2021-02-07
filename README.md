@@ -40,3 +40,15 @@ January 31st
         - consider improving dialogue and dialogue options
         - consider use of pygame in workign to make this a bit more of game and not just console based 
         - consider addtions to monster functions and creation of smaller monsters
+
+Feburary 7th
+
+    Additions
+        -
+    TODO
+        - Renovate ingame battle system
+        - Improv player functions/methods as well as possible dedicated inventory system?
+        - change colored text 
+        - consider improving dialogue and dialogue options
+        - consider use of pygame in workign to make this a bit more of game and not just console based 
+        - consider addtions to monster functions and creation of smaller monsters

@@ -33,7 +33,7 @@ class Player(Avatar):
         REGION: ITEMS AND STATS
     '''
     #-///-:
-    def ItemAdd(self,itemName,itemDescription,itemRange):
+    def itemAdd(self,itemName,itemDescription,itemRange):
         '''Quick function to add items to inventory while adding to the AMOUNT of similar items'''
 
         # initalize variables
@@ -55,7 +55,7 @@ class Player(Avatar):
         if(foundItem != True):
             self.inventory.append(newItem)
 
-    def useItem(self, itemName):
+    def itemUse(self, itemName):
         '''
         which == item use the item range and remove item
         also consider adding an item class which will be able to better point at min max and amount values
@@ -83,7 +83,7 @@ class Player(Avatar):
                 # We're done here. Break outta the loop
                 break
 
-    def applyItem(self,item):
+    def itemApply(self,item):
         # check if its armor 
         if(item.type == "armor"):
             self.armorName = item.name
@@ -105,7 +105,7 @@ class Player(Avatar):
             print('This action has %s points' % amount)
         
 
-    def printItems(self):
+    def itemPrint(self):
         '''Quick function that iterates through and prints all items and equipment in inventory'''
         print("--------------ITEMS--------------")
 
@@ -122,6 +122,78 @@ class Player(Avatar):
     '''
         END REGION ITEMS AND STATS
     '''
+
+    '''
+        BATTLE ACTION
+    '''
+
+    public void battleAction(Monster recipient)
+	{
+		// prompt user for battle commands
+		// add more commands like meditate or 
+		System.out.println
+		("where move next? "
+				+ "\n1. attack"
+				+ "\n2. defend"
+				+ "\n3. useItem"
+				+ "\n4. do nothing..."
+		);
+
+		// take users next input 
+		int choice = input.nextInt();
+		
+		// stores how much damage the user did 
+		int damageDealt = 0; 
+
+		// cuts damage received in half when defending 
+		if(recipient.defending == true)
+		{
+			// add an extra bit of defense to damage dealt
+			damageDealt = ( (getAtk() - recipient.getDef()) / 2 );
+			
+			// turn of the "defending" state
+			recipient.setdefend(false);
+		}
+		else 
+		{
+			// if they aren't defending make it normal damage
+			damageDealt = (getAtk() - (recipient.getDef()));
+		}
+
+		// switch between users choice to find out what they want to do 
+		switch(choice)
+		{
+			//1.up,  2.right, 3.down, 4.left, 5.show inventory, 6. useItem
+			case 1:
+				
+				// attack monster // prints something like this (You attacked larry for 8 points of damage 
+				System.out.println("You attacked " + recipient.getName() + " for " + damageDealt + " points of damage!" );
+				recipient.setHealth(recipient.getHealth() - (damageDealt));
+				break;
+
+	
+			case 2:
+				// this just tells the enemy that the player is defending
+				// this cause them to have extra defense from the next attack 
+				System.out.println("You're defending from the next attack!");
+				defending = true;
+				break;
+	
+			case 3:
+				// call useItem
+				useItem();
+				break;
+				
+			case 4:
+				// do nothing 
+				System.out.println("You did. nothing...");
+				break;
+			
+			default:
+				System.out.println("either incorrect or no input was entered therefore... SKIP A TURN!");
+				break;
+		}
+	}
 
     # toString method 
     def __str__(self):

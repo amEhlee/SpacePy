@@ -19,6 +19,11 @@ class SpacWorld:
     from time import sleep  # anytime you see sleep(i) stops the program for i seconds
     import sys  # don't know too much about sys so I imported the whole thing / needed for print_slow
 
+    # List of Common Items used to easily identify consumables and items used more than once
+    # -///- : actually add items here lol
+    iGreen_Syringe = []
+
+
     # initalize miscellaneos
     text_read_speed = 1  # used for sleeping after text so I don't have to keep on setting it if I do change it
     text_slow_speed = 0 # used for the print slow method 
@@ -146,8 +151,8 @@ class SpacWorld:
                                     "In one of the cardboard boxes you find a syringe filled with a green liquid! This could can probably be used to heal you later on"))
                 
                 # add stuff to inventory and show what you already have
-                self.aPlayer.inventory.append("Green Syringe")
-                print(("in your inventory you got:" + '{}').format(self.aPlayer.inventory))
+                self.aPlayer.itemAdd(greenSyringe)
+                print(self.aPlayer.itemPrint())
                 
                 # print text
                 print("Things outside haven't changed")
