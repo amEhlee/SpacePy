@@ -4,6 +4,8 @@ class Monster(Avatar):
     # base monster variables
     aggro = 0 
 
+    '''
+    FIX LATER
     // they will prevent the monster from performing actions of having interactions if its dead
 	private boolean exists = true;
 
@@ -16,12 +18,15 @@ class Monster(Avatar):
     def __init__(self,mName,mHth,mAtk,mDef,mAggro):
         super().__init__(mName,mHth,mAtk,mDef)
         self.aggro = mAggro
+    '''
 
     '''
         AGGRO AND ACTION
     '''
     #def addAggro # will play throughout dungeon
 
+    '''
+    FIX LATER
 	/*
 	 * In battles randomize the actions of the monsters. also 
 	 * takes in who will be reciving the damage 
@@ -126,7 +131,7 @@ class Monster(Avatar):
 		}
 		
 	}
-
+    '''
 
 
     '''

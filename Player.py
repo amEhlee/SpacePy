@@ -127,6 +127,9 @@ class Player(Avatar):
         BATTLE ACTION
     '''
 
+    '''
+    FIX FOR LATER
+
     public void battleAction(Monster recipient)
 	{
 		// prompt user for battle commands
@@ -194,6 +197,7 @@ class Player(Avatar):
 				break;
 		}
 	}
+    '''
 
     # toString method 
     def __str__(self):
