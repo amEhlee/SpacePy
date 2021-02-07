@@ -1,5 +1,6 @@
 from Player import Player
 from Monster import Monster
+from Item import Item
 from time import sleep
 import sys
 
@@ -21,8 +22,11 @@ class SpacWorld:
 
     # List of Common Items used to easily identify consumables and items used more than once
     # -///- : actually add items here lol
-    iGreen_Syringe = []
-
+    iGreen_Syringe = Item("potion","heal for x hp",[0.1,0.5],1,"Consumable")
+    iWeaponWrench = Item("Wrench","deals 0.1 - 0.5 extra damage",[0.1,0.5],None,"Weapon")
+    iWeaponDefault = Item("Hands","Deals a small amount of damage",[0.1,0.5],None,"Weapon")
+    iArmorDefault = Item("SkinSuit","Bare suit made for a slight more confortable time in space",[0.3,0.5],None,"Armor")
+    iArmorSuit = Item("SpaceSuit","Bulky and More importantly made to protect",[0.5,0.8],None,"Armor")
 
     # initalize miscellaneos
     text_read_speed = 1  # used for sleeping after text so I don't have to keep on setting it if I do change it
@@ -151,8 +155,8 @@ class SpacWorld:
                                     "In one of the cardboard boxes you find a syringe filled with a green liquid! This could can probably be used to heal you later on"))
                 
                 # add stuff to inventory and show what you already have
-                self.aPlayer.itemAdd(greenSyringe)
-                print(self.aPlayer.itemPrint())
+                self.aPlayer.itemAdd(self.iGreen_Syringe)
+                self.aPlayer.itemPrint()
                 
                 # print text
                 print("Things outside haven't changed")
@@ -347,10 +351,10 @@ class SpacWorld:
             self.add_text_effect(self.effect['green'], 'Lying on a matress you see a green health syringe which you take for later'))
         
         # add to inventory 
-        self.aPlayer.inventory.append("Green Syringe")
+        self.aPlayer.itemAdd(self.iGreen_Syringe)
         self.sleep(self.text_read_speed)
         # lets the user know what they have in their inventory
-        print(("in your inventory you got:" + '{}').format(self.aPlayer.inventory))
+        self.aPlayer.itemPrint()
         self.sleep(self.text_read_speed)
         # go to next part of the game(cockpit)
         self.cockpit()
@@ -390,7 +394,7 @@ class SpacWorld:
             print('\n')
             print("You now have the wrench as your main weapon")
             self.sleep(self.text_read_speed)
-            self.aPlayer.weapon = "wrench"
+            self.aPlayer.itemAdd(self.iWeaponWrench)
             #weapon = wrench -///- possible problem area 
             # continue the scene in the cockpit
             self.cockpit_continued()
@@ -466,6 +470,7 @@ class SpacWorld:
 
         # adds the monster's aggro (how much it hates you ) to its health based on old decisions
         # monster aggro should be processed in a different way self.eMonster.health += monster_aggro
+        # -///-
         self.eMonster.health += self.eMonster.aggro
 
         # Enter combat with the slime
