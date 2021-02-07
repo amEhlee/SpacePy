@@ -8,16 +8,20 @@ The end goal is to get off the shit while evading whatever killed the rest of th
 
 Since its one of my first times coding im just going back to update it now so ig enjoy?
 
-Jan 5th 2021 -
-    - Updated to include classes and parenting for player and monster classes
-    - Addition of the avatar and playgame class where most objects inherit from 
+Jan 5th 2021 
 
-Jan 17th 2021 -
-    ADDITIONS
+    Additions
+        - Updated to include classes and parenting for player and monster classes
+        - Addition of the avatar and playgame class where most objects inherit from 
+
+Jan 17th 2021 
+
+    Additions
         - Major changes to syntax and added the rest of the story. MAJOR CHANGE!!!
         - All except battle system are now in working order!
         
-January 24 2021 -
+January 24 2021
+
     Additions
         - creaiton of item class
         - some cleanup of code
