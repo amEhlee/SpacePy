@@ -573,7 +573,7 @@ class SpacWorld:
         ending()
 
 
-    def ending():
+    def ending(self):
         # decides what ending the player got
         if (self.eMonster.health <= 0):
             # if the monster died move on
@@ -593,7 +593,7 @@ class SpacWorld:
             lose_sitation()
 
 
-    def win_situation_good():
+    def win_situation_good(self):
         # print the best ending to the game and exit from the game
         print(('\n') * 3)
         print(self.add_text_effect(self.effect['blue'],
@@ -606,7 +606,7 @@ class SpacWorld:
         exit()
 
 
-    def win_sitation_neutral():
+    def win_sitation_neutral(self):
         # print the neutral ending's text and exit from the game
         print(('\n') * 3)
         print(self.add_text_effect(self.effect['blue'],
@@ -624,7 +624,7 @@ class SpacWorld:
         exit()
 
 
-    def lose_sitation():
+    def lose_sitation(self):
         # print the loss ending's text and exit from the game
         print(('\n') * 3)
         print(self.add_text_effect(self.effect['blue'],
