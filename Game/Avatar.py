@@ -8,6 +8,7 @@ class Avatar():
     health = None
     attack = None 
     defense = None
+    defendState = False;
 
     # base constructor for object creation
     def __init__(self, _name, _health, _attack, _defense):

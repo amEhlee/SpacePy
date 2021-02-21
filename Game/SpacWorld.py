@@ -75,11 +75,10 @@ class SpacWorld:
 
     '''
     Character Creation
-    a = ally
-    e = enemy
+    o = object 
     '''
-    aPlayer = Player(None,None,None,None,None)
-    eMonster = Monster("Monster",200,20,20,0)
+    oPlayer = Player(None,None,None,None,None)
+    oMonster = Monster("Monster",200,20,20,0)
 
     '''
     Story Options
@@ -98,29 +97,28 @@ class SpacWorld:
 
     # Character Creation
     def characterCreation(self):
-
         # Process player decisions on Name 
         decision = input("what is the name of your character")
 
         # Apply player name decision
-        self.aPlayer.name = decision
+        self.oPlayer.name = decision
 
         # Process player decisions on Play style
         decision = input("what style of play of you have? (Choose a number!!)\n1: Offensive 100 health 25 attack 10 defense\n2: Defensive 150 Health, 15 attack 20 defense\n3. Neutral 125 Health 15 attack, 15 defense")
 
         # Apply player stats decision
         if(decision == '1'):
-            self.aPlayer.health = 100
-            self.aPlayer.attack = 25
-            self.aPlayer.defense = 10
+            self.oPlayer.health = 100
+            self.oPlayer.attack = 25
+            self.oPlayer.defense = 10
         elif(decision == '2'):
-            self.aPlayer.health = 150
-            self.aPlayer.attack = 15
-            self.aPlayer.defense = 25
+            self.oPlayer.health = 150
+            self.oPlayer.attack = 15
+            self.oPlayer.defense = 25
         elif(decision == '3'):
-            self.aPlayer.health = 125
-            self.aPlayer.attack = 15
-            self.aPlayer.defense = 15
+            self.oPlayer.health = 125
+            self.oPlayer.attack = 15
+            self.oPlayer.defense = 15
         else:
             print("invalid input, retrying method...")
             self.characterCreation()
@@ -128,7 +126,7 @@ class SpacWorld:
         # More responeses
         self.print_slow("Perfect!\nBe aware that weapons and Armor can also be found within the game that will help you", self.text_slow_speed)
         self.print_slow("Here are your Player's total stats right now", self.text_slow_speed )
-        self.aPlayer.__str__()
+        self.oPlayer.__str__()
         self.print_slow("\n\nHave fun and hope you enjoy the game\n\n\n", self.text_slow_speed)
         self.sleep(self.text_read_speed)
 
@@ -155,8 +153,8 @@ class SpacWorld:
                                     "In one of the cardboard boxes you find a syringe filled with a green liquid! This could can probably be used to heal you later on"))
                 
                 # add stuff to inventory and show what you already have
-                self.aPlayer.itemAdd(self.iGreen_Syringe)
-                self.aPlayer.itemPrint()
+                self.oPlayer.itemAdd(self.iGreen_Syringe)
+                self.oPlayer.itemPrint()
                 
                 # print text
                 print("Things outside haven't changed")
@@ -177,7 +175,7 @@ class SpacWorld:
             print("the silence resumes... For some reason you feel just a little bit safer")
 
             # Waited long enough so monster no longer suspects you. reduce aggro by 20
-            self.eMonster.aggro += 20 
+            self.oMonster.aggro += 20 
 
         elif(repeat_count >= 4):
             # nothing is left in the room so continue printing this
@@ -240,8 +238,8 @@ class SpacWorld:
         print(self.add_text_effect(self.effect['red'],
             "as you try to take a closer the green goo bursts out of the helmet slightly burning your hand. From this you take 10 damage"))
         # decrease player health cause they made the wrong decision
-        self.aPlayer.health -= 10
-        print(("You now have {} points of health").format(self.aPlayer.health))
+        self.oPlayer.health -= 10
+        print(("You now have {} points of health").format(self.oPlayer.health))
         # move along to the next part of the story a fork in the path
         self.fork_1()
 
@@ -279,8 +277,8 @@ class SpacWorld:
                             "As you make your way through the hallway from above you the ceiling collapses from goo weighing it down dealing 20 points of damage"))
         self.sleep(self.text_read_speed)
         # decrease and print the player's current health
-        self.aPlayer.health -= 20
-        print(("You now have {} points of health").format(self.aPlayer.health))
+        self.oPlayer.health -= 20
+        print(("You now have {} points of health").format(self.oPlayer.health))
         # move to next part of the game
         self.fork_2()
 
@@ -307,7 +305,7 @@ class SpacWorld:
 
         if (decision == '1'):
             # print text of trying heat ray with waits inbetween
-            # this might want to be expanded on 
+            # this might want to be expanded on -///-
             print('\nYou pick up and try to use the heat ray but it seems to be either broken or out of juice')
             self.sleep(self.text_read_speed)
             print('You leave it alone and move on')
@@ -351,10 +349,10 @@ class SpacWorld:
             self.add_text_effect(self.effect['green'], 'Lying on a matress you see a green health syringe which you take for later'))
         
         # add to inventory 
-        self.aPlayer.itemAdd(self.iGreen_Syringe)
+        self.oPlayer.itemAdd(self.iGreen_Syringe)
         self.sleep(self.text_read_speed)
         # lets the user know what they have in their inventory
-        self.aPlayer.itemPrint()
+        self.oPlayer.itemPrint()
         self.sleep(self.text_read_speed)
         # go to next part of the game(cockpit)
         self.cockpit()
@@ -363,9 +361,7 @@ class SpacWorld:
     def hallway_3(self):
         # alternative route from fork in road
         # print text and go to next part of the game(cockpit)
-        print('\n')
-        print(
-            "The hallway is filled with nothing but silence. You can tell the green jelly has taken over some bathrooms nearby so no getting near that.")
+        print("\nThe hallway is filled with nothing but silence. You can tell the green jelly has taken over some bathrooms nearby so no getting near that.")
         self.sleep(self.text_read_speed)
         self.cockpit()
 
@@ -373,8 +369,7 @@ class SpacWorld:
     def cockpit(self):
         # part of the game where the player is in the cockpit/control room of the ship
         # print more plot with waits inbetween
-        print('\n')
-        print('You enter the cockpit of the ship. On its walls are monitors of various sizes')
+        print('\nYou enter the cockpit of the ship. On its walls are monitors of various sizes')
         self.sleep(self.text_read_speed)
         print('You turn on the main screen and enter the password to open the ship docking sector')
         self.sleep(self.text_read_speed)
@@ -391,10 +386,9 @@ class SpacWorld:
         if (decision == '1'):
             # if the player chooses to pick up the wrench add it as their main weapon
             # this weapon will be used for combat later on
-            print('\n')
-            print("You now have the wrench as your main weapon")
+            print("\nYou now have the wrench as your main weapon")
             self.sleep(self.text_read_speed)
-            self.aPlayer.itemAdd(self.iWeaponWrench)
+            self.oPlayer.itemAdd(self.iWeaponWrench)
             #weapon = wrench -///- possible problem area 
             # continue the scene in the cockpit
             self.cockpit_continued()
@@ -413,7 +407,7 @@ class SpacWorld:
         self.sleep(self.text_read_speed)
         # decide whether or not to press the button that activates self destruct sequence
         decision = input(self.add_text_effect(self.effect['red'],
-                                        "\nDo you press the button? \n1. Activate self destruct button \n2. Leave it alone and move on"))
+                        "\nDo you press the button? \n1. Activate self destruct button \n2. Leave it alone and move on"))
 
         if (decision == '1'):
             # moves to self destruct sequence part of game
@@ -428,7 +422,7 @@ class SpacWorld:
         # moves to self destruct sequence part of the game
         print('\n')
         # increases monster aggro cause you chose the right option effectively activating hardmode
-        self.eMonster.aggro += 100
+        self.oMonster.aggro += 100
         # self_destruct? = true; this changes ending of the game and acftivates other things like hardmode SHOULD TRIGGER MORE EVENTS
 
         # print flashing red text for effect
@@ -469,9 +463,9 @@ class SpacWorld:
         self.sleep(self.text_read_speed)
 
         # adds the monster's aggro (how much it hates you ) to its health based on old decisions
-        # monster aggro should be processed in a different way self.eMonster.health += monster_aggro
+        # monster aggro should be processed in a different way self.oMonster.health += monster_aggro
         # -///-
-        self.eMonster.health += self.eMonster.aggro
+        self.oMonster.health += self.oMonster.aggro
 
         # Enter combat with the slime
         print("You now enter combat with the slime alien! \n")
@@ -480,106 +474,32 @@ class SpacWorld:
     '''
     MAIN HEADER BUT BATTLES SHOULD BE CLEANED UP A LOT MORE THAN THIS 
     '''
-    def battle(self):
+    def battleScript(self, recipient):
+        while((oPlayer.health > 0) and (recipient.health > 0)):
+            #print a break including player and monster information
+            print("\n\n---- BATTLE ---- \n\n\n\n")
+            print("{} has {} health points remaining".format(recipient.name, recipient.health));
+            print("{} has {} health points remaining".format(oPlayer.name,oPlayer.health))
 
-        # THIS IS THE MAIN LOOP THAT CHECKS IF BOTH PLAYER AND MONSTER ARE STILL ALIVE
-        while (self.eMonster.health > 0 and self.aPlayer.health > 0):
-            # shows how much health you and the monster have at the start of your turns
-            print(("You have {} health ").format(self.aPlayer.health))
-            print(("The monster has {} health").format(self.eMonster.health))
+            # monster taunts player
+            recipient.sayQuote()
 
-            # lets the player choose what action they want to do in this battle
-            battle_action = 0
-            battle_action = input((
-                                '\033[0;36m What do you want to do? \n1. Attack with weapon \n2. Challenge to rock paper scissors match  \n3. Use health syringe (inventory contains {})\n4. Heal \033[0m').format(
-                self.aPlayer.inventory))
+            # allow player to attack
+            oPlayer.battleAction(recipient)
 
-            if (battle_action == '1'):
-                # if you decide to attack with your weapon do all this stuff
-                print("You attack the monster with your weapon")
-                self.sleep(self.text_read_speed)
+            # make recipient attack back 
+            recipient.battleAction(oPlayer)
 
-                # store damage of the wrench in a variable for use when printing text
-                damage_dealt = attacking(wrench)
-
-                # show how much damage you deal
-                print(("You deal {} damage").format(damage_dealt))
-                self.sleep(self.text_read_speed)
-
-                # decrease the monster's health based on this damage
-                self.eMonster.health -= damage_dealt
-                print('\n')
-
-                # have the monster attack back and decrease the player's health
-                monster_damage_dealt = attacking(monster_attack)
-                print(("The monster deals {} damage").format(monster_damage_dealt))
-                self.aPlayer.health -= monster_damage_dealt
-
-                # continue the battle
-                battle()
-
-            elif (battle_action == '2'):
-                # challenge the monster to rock paper scissors loser takes damage
-                print("\n")
-                print("you challenge the monster to a match of rock paper scissors, which it agrees to of course")
-                self.sleep(self.text_read_speed)
-                # start the rock paper scissors game
-                play_RPS()
-
-            elif ((battle_action == '3') and (len(inventory) > 0)):
-                # as long as the player has a syringe in their inventory they can heal
-                print("\n")
-                print("You use a health sringe and get 20 damage points restored")
-
-                # remove used syringe's from inventory
-                del inventory[0]
-                self.sleep(self.text_read_speed)
-                # increase the player's inventory
-                self.aPlayer.health += 20
-                print("\n")
-                # continue the battle
-                battle()
-
-            elif (battle_action == '4'):
-                print('\n')
-                # allows the player to heal without a syringe if they need to
-                print("meditate quickly and attempt to regen your health")
-                self.sleep(self.text_read_speed)
-                # shouldn't really be called attacking its useful though for adding + decreasing values
-                heal = attacking([0, 3])
-                print(("you heal {} damage").format(heal))
-                self.sleep(self.text_read_speed)
-                self.aPlayer.health += heal
-
-                # monster gets a turn to attack
-                monster_damage_dealt = attacking(monster_attack)
-                print(("The monster deals {} damage").format(monster_damage_dealt))
-                self.sleep(self.text_read_speed)
-                self.aPlayer.health -= monster_damage_dealt
-
-                # continue the battle
-                print('\n')
-                battle()
-
-
-            else:
-                # if they have nothing print this message and continue the battle
-                print("\n")
-                print("You have nothing in your inventory >:C")
-                self.sleep(self.text_read_speed)
-                print("\n")
-                battle()
-
-        ending()
+        self.ending();
 
 
     def ending(self):
         # decides what ending the player got
-        if (self.eMonster.health <= 0):
+        if (self.oMonster.health <= 0):
             # if the monster died move on
             print("\n")
 
-            if (monster_aggro >= 100):
+            if (self.oMonster.aggro >= 100):
                 # checks based on monster's aggro cause that increses by 100 when you press the switch
                 # if the monster died AND you activated the self destruct sequence go to the best ending
                 win_situation_good()
@@ -588,7 +508,7 @@ class SpacWorld:
                 # if they didn't press the switch BUT defeated the monster go to the neutral ending
                 win_sitation_neutral()
 
-        elif (self.aPlayer.health <= 0):
+        elif (self.oPlayer.health <= 0):
             # if they lost the battle print this sitation
             lose_sitation()
 

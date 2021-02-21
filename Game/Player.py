@@ -22,6 +22,7 @@ class Player(Avatar):
     weaponValues = None # damage range for weapon -///-: rennovated into inventory like system later?
     ArmorName = "" # might be a dicitonary later storing name : damage stuff
     ArmorValues = None # damage range for weapon -///-: rennovated into inventory like system later?
+    currentWeapon = None;
 
 
     #initalize constructor
@@ -126,7 +127,28 @@ class Player(Avatar):
     '''
         BATTLE ACTION
     '''
+    def battleAction(self, recipient):
+        decision = input("where move next? "
+                            + "\n1. attack"
+                            + "\n2. defend"
+                            + "\n3. useItem"
+                            + "\n4. do nothing..."
+		)
 
+        if(decision == 1):
+            self.attacking(currentWeapon.value)
+
+        elif(decision == 2):
+        
+        elif(decision == 3):
+        
+        elif(decision == 4):
+
+        else(decision)
+
+
+        
+        
     '''
     FIX FOR LATER
 
