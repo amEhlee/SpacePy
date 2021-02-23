@@ -139,12 +139,11 @@ class Player(Avatar):
             self.attacking(currentWeapon.value)
 
         elif(decision == 2):
-        
+            pass
         elif(decision == 3):
-        
+            pass
         elif(decision == 4):
-
-        else(decision)
+            pass
 
 
         

@@ -74,8 +74,7 @@ class SpacWorld:
         '''
 
     '''
-    Character Creation
-    o = object 
+    Character Creation o is prefixed for object
     '''
     oPlayer = Player(None,None,None,None,None)
     oMonster = Monster("Monster",200,20,20,0)
@@ -98,14 +97,16 @@ class SpacWorld:
     # Character Creation
     def characterCreation(self):
         # Process player decisions on Name 
-        decision = input("what is the name of your character")
+        decision = input(self.add_text_effect(self.effect['yellow'],
+                            "What is the name of your character"))
 
         # Apply player name decision
         self.oPlayer.name = decision
 
         # Process player decisions on Play style
-        decision = input("what style of play of you have? (Choose a number!!)\n1: Offensive 100 health 25 attack 10 defense\n2: Defensive 150 Health, 15 attack 20 defense\n3. Neutral 125 Health 15 attack, 15 defense")
-
+        decision = input(self.add_text_effect(self.effect['yellow'],
+                    "\nWhat style of play of you have? (Choose a number!!)\n1: Offensive 100 health 25 attack 10 defense\n2: Defensive 150 Health, 15 attack 20 defense\n3. Neutral 125 Health 15 attack, 15 defense"))
+        
         # Apply player stats decision
         if(decision == '1'):
             self.oPlayer.health = 100
@@ -182,7 +183,9 @@ class SpacWorld:
             print("The only thing that remains is silence")
 
         # first decision asks to leave room or wait/search
-        decision = input("\n \033[0;36mThings seem pretty quiet outside should I leave the room? \n 1. Leave the room \n 2. Search the room in silence for anything useful \033[0m")
+        decision = input(self.add_text_effect(self.effect['cyan'],
+            "\nThings seem pretty quiet outside should I leave the room? \n 1. Leave the room \n 2. Search the room in silence for anything useful"))
+        
         if (decision == "1"):
             # move on to the next part of the game
             repeat_count = 0  # checks how many times the function repeats
@@ -216,8 +219,9 @@ class SpacWorld:
         print("Its covered in that strange green goop and brings an aura of curiosity as well as fear")
 
         # decide whether to go and investigate the suit or move along
-        decision = input(
-            "\n \033[0;36mDo you go over and investigate the suit? \n1. Yes maybe you could find out more about that sludge \n2. Not with all the green sludge covering it! \033[0m")
+        decision = input(self.add_text_effect(self.effect['cyan'],
+            "\nDo you go over and investigate the suit? \n1. Yes maybe you could find out more about that sludge \n2. Not with all the green sludge covering it!"))
+
         if (decision == '1'):
             # if they choose to check the suit move to that function
             self.investigate_suit()
@@ -254,8 +258,9 @@ class SpacWorld:
         self.sleep(self.text_read_speed)
 
         # make the user decide on what path to take
-        decision = input(
-            "\n \033[0;36mWhat path do you want to take? \n1. To the research sector! \n2. The research sector is too dangerous seems like a better idea to go around it \033[0m")
+        decision = input(self.add_text_effect(self.effect['cyan'],
+            "\What path do you want to take? \n1. To the research sector! \n2. The research sector is too dangerous seems like a better idea to go around it "))
+
         if (decision == "1"):
             # move to research sector
             self.research_sector()
@@ -301,7 +306,7 @@ class SpacWorld:
 
         # decide whether to pick up the heat ray or not
         decision = input(self.add_text_effect(self.effect['cyan'],
-                                        "On top of a nearby desk you spot a heat ray \n1. Pick it up \n2. leave it alone might be dangerous \n"))
+                            "On top of a nearby desk you spot a heat ray \n1. Pick it up \n2. leave it alone might be dangerous \n"))
 
         if (decision == '1'):
             # print text of trying heat ray with waits inbetween
@@ -323,9 +328,10 @@ class SpacWorld:
         print(
             "There is another fork in the road either go to the medbay which oozes with green gel from under the door or the alternative path around it which might be safer as well as faster ")
         self.sleep(self.text_read_speed)
+
         # lets the player decide where to go next
-        decision = input(
-            self.add_text_effect(self.effect['cyan'], "\n1. Go to medbay \n2. Take the hallway around which might be safer"))
+        decision = input(self.add_text_effect(self.effect['cyan'],
+                             "\n1. Go to medbay \n2. Take the hallway around which might be safer"))
 
         if (decision == '1'):
             # goes down medbay route
@@ -351,9 +357,11 @@ class SpacWorld:
         # add to inventory 
         self.oPlayer.itemAdd(self.iGreen_Syringe)
         self.sleep(self.text_read_speed)
+
         # lets the user know what they have in their inventory
         self.oPlayer.itemPrint()
         self.sleep(self.text_read_speed)
+
         # go to next part of the game(cockpit)
         self.cockpit()
 
@@ -380,8 +388,8 @@ class SpacWorld:
             'You turn off the screen and search the room. On a nearby table you find a large wrench which might serve as a good weapon \n')
         self.sleep(self.text_read_speed)
         # decision to pick up the wrench or not
-        decision = input(
-            self.add_text_effect(self.effect['cyan'], "Do you pick up the wrench \n1. Pick up the wrench \n2. leave it alone"))
+        decision = input(self.add_text_effect(self.effect['cyan'],
+                            "Do you pick up the wrench \n1. Pick up the wrench \n2. leave it alone"))
 
         if (decision == '1'):
             # if the player chooses to pick up the wrench add it as their main weapon
@@ -469,27 +477,28 @@ class SpacWorld:
 
         # Enter combat with the slime
         print("You now enter combat with the slime alien! \n")
-        self.battle()
+        self.battleScript(self.oMonster)
 
     '''
     MAIN HEADER BUT BATTLES SHOULD BE CLEANED UP A LOT MORE THAN THIS 
     '''
     def battleScript(self, recipient):
-        while((oPlayer.health > 0) and (recipient.health > 0)):
+        while((self.oPlayer.health > 0) and (recipient.health > 0)):
             #print a break including player and monster information
             print("\n\n---- BATTLE ---- \n\n\n\n")
             print("{} has {} health points remaining".format(recipient.name, recipient.health));
-            print("{} has {} health points remaining".format(oPlayer.name,oPlayer.health))
+            print("{} has {} health points remaining".format(self.oPlayer.name,self.oPlayer.health))
 
             # monster taunts player
             recipient.sayQuote()
 
             # allow player to attack
-            oPlayer.battleAction(recipient)
+            self.oPlayer.battleAction(recipient)
 
             # make recipient attack back 
             recipient.battleAction(oPlayer)
 
+        # battle over. go home.
         self.ending();
 
 

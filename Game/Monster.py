@@ -14,12 +14,12 @@ class Monster(Avatar):
 
     private ArrayList<String> WolfQuotes = new ArrayList();
 	private ArrayList<String> VampQuotes = new ArrayList();
-
+	'''
     def __init__(self,mName,mHth,mAtk,mDef,mAggro):
         super().__init__(mName,mHth,mAtk,mDef)
         self.aggro = mAggro
     '''
-
+	'''
     '''
         AGGRO AND ACTION
     '''
