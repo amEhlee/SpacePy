@@ -1,5 +1,11 @@
+# Standard stuff
+stanCommitMessages
+
+# Unit testing...
 allmaths.py
 allUnitTests.py
 allobjs.py
+
+# vscode stuff
 .vscode/settings.json
 __pycache__/
