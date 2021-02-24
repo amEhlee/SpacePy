@@ -74,7 +74,7 @@ class Player(Avatar):
                 foundItem.amount -= 1
 
                 # apply the item to play stats
-                applyItem(foundItem)
+                itemApply(foundItem)
 
                 # Check if we ran out of that item
                 if(foundItem.amount == 0):
@@ -128,97 +128,49 @@ class Player(Avatar):
         BATTLE ACTION
     '''
     def battleAction(self, recipient):
-        decision = input("where move next? "
+        ''' battle action specific to player monsters operate differently cause they can't choose actions'''
+        decision = input("\nWhat action do you take?"
                             + "\n1. attack"
                             + "\n2. defend"
-                            + "\n3. useItem"
-                            + "\n4. do nothing..."
+                            + "\n3. show inventory"
+                            + "\n4. useItem"
+                            + "\n5. do nothing..."
 		)
 
-        if(decision == 1):
-            self.attacking(currentWeapon.value)
+        if(decision == "1"):
+            #-///- possible expansion here for a second input tags as well as physical vs magic spells 
+            # get damage
+            damageDealt = self.calculateAttack(weaponValues)
 
-        elif(decision == 2):
-            pass
-        elif(decision == 3):
-            pass
-        elif(decision == 4):
-            pass
+            # factor defense cuts damage in two
+            if(recipient.defending == True):
+                print("The target was defending! Decreased Damage :(")
+                damageDealt = self.calculateAttack(weaponValues)/2
 
+                # reset defending 
+                recipient.defending = False;
 
+            # standard attacking 
+            print("{} attacked {} for {} points of damage".format(self.name, recipient.name, damageDealt))
+            recipient.health -= damageDealt
+
+        elif(decision == "2"):
+            print("You're Defending from the next attack")
+            self.defending = True
+
+        elif(decision == "3"):
+            self.itemPrint()
         
-        
-    '''
-    FIX FOR LATER
+        elif(decision == "3"):
+            self.itemUse()
+            
+        elif(decision == "4"):
+            print("You did. nothing...!")
 
-    public void battleAction(Monster recipient)
-	{
-		// prompt user for battle commands
-		// add more commands like meditate or 
-		System.out.println
-		("where move next? "
-				+ "\n1. attack"
-				+ "\n2. defend"
-				+ "\n3. useItem"
-				+ "\n4. do nothing..."
-		);
+        else:
+            print("Invalid input.. retry!")
+            self.battleAction(recipient)
 
-		// take users next input 
-		int choice = input.nextInt();
-		
-		// stores how much damage the user did 
-		int damageDealt = 0; 
-
-		// cuts damage received in half when defending 
-		if(recipient.defending == true)
-		{
-			// add an extra bit of defense to damage dealt
-			damageDealt = ( (getAtk() - recipient.getDef()) / 2 );
-			
-			// turn of the "defending" state
-			recipient.setdefend(false);
-		}
-		else 
-		{
-			// if they aren't defending make it normal damage
-			damageDealt = (getAtk() - (recipient.getDef()));
-		}
-
-		// switch between users choice to find out what they want to do 
-		switch(choice)
-		{
-			//1.up,  2.right, 3.down, 4.left, 5.show inventory, 6. useItem
-			case 1:
-				
-				// attack monster // prints something like this (You attacked larry for 8 points of damage 
-				System.out.println("You attacked " + recipient.getName() + " for " + damageDealt + " points of damage!" );
-				recipient.setHealth(recipient.getHealth() - (damageDealt));
-				break;
-
-	
-			case 2:
-				// this just tells the enemy that the player is defending
-				// this cause them to have extra defense from the next attack 
-				System.out.println("You're defending from the next attack!");
-				defending = true;
-				break;
-	
-			case 3:
-				// call useItem
-				useItem();
-				break;
-				
-			case 4:
-				// do nothing 
-				System.out.println("You did. nothing...");
-				break;
-			
-			default:
-				System.out.println("either incorrect or no input was entered therefore... SKIP A TURN!");
-				break;
-		}
-	}
-    '''
 
     # toString method 
     def __str__(self):

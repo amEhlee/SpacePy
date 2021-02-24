@@ -29,7 +29,7 @@ class SpacWorld:
     iArmorSuit = Item("SpaceSuit","Bulky and More importantly made to protect",[0.5,0.8],None,"Armor")
 
     # initalize miscellaneos
-    text_read_speed = 1  # used for sleeping after text so I don't have to keep on setting it if I do change it
+    text_read_speed = 0  # used for sleeping after text so I don't have to keep on setting it if I do change it
     text_slow_speed = 0 # used for the print slow method 
     repeat_count = 0 # checks how many times a fuction repeats // used multiple times
     effect = {}  # initalize text global effect variables
@@ -485,12 +485,12 @@ class SpacWorld:
     def battleScript(self, recipient):
         while((self.oPlayer.health > 0) and (recipient.health > 0)):
             #print a break including player and monster information
-            print("\n\n---- BATTLE ---- \n\n\n\n")
+            print("\n\n---- BATTLE ---- \n\n")
             print("{} has {} health points remaining".format(recipient.name, recipient.health));
             print("{} has {} health points remaining".format(self.oPlayer.name,self.oPlayer.health))
 
             # monster taunts player
-            recipient.sayQuote()
+            #recipient.sayQuote() -///-
 
             # allow player to attack
             self.oPlayer.battleAction(recipient)

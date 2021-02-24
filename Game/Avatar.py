@@ -19,7 +19,7 @@ class Avatar():
 
     # this function takes two args (min and max) and returns a random number between them
     # this should take pretty low numbers so enemies arent broken
-    def attacking(self,attack_value):
+    def calculateAttack(self,attack_value):
         min_value = attack_value[0]
         max_value = attack_value[1]
         crit = False  # initalize crit chance varible
