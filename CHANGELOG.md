@@ -6,6 +6,7 @@
         - Script and text improved
         - General improvments to syntax, text now uses add text effect
         - greater error checking and handling 
+        - player battle action working on mosnter now
 
     **TODO**
         Battle System
