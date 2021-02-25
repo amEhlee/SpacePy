@@ -5,6 +5,7 @@ stanCommitMessages
 allmaths.py
 allUnitTests.py
 allobjs.py
+int list
 
 # vscode stuff
 .vscode/settings.json
