@@ -19,7 +19,7 @@ class Player(Avatar):
 
     # More on stats -///-: possible move to avatar class?
     weaponName = "" # might be a dicitonary later storing name : damage stuff
-    weaponValues = None # damage range for weapon -///-: rennovated into inventory like system later?
+    weaponValues = [4,10] # damage range for weapon -///-: rennovated into inventory like system later?
     ArmorName = "" # might be a dicitonary later storing name : damage stuff
     ArmorValues = None # damage range for weapon -///-: rennovated into inventory like system later?
     currentWeapon = None;
@@ -129,6 +129,7 @@ class Player(Avatar):
     '''
     def battleAction(self, recipient):
         ''' battle action specific to player monsters operate differently cause they can't choose actions'''
+        defending = False; # reset defending status when its your actiona again
         decision = input("\nWhat action do you take?"
                             + "\n1. attack"
                             + "\n2. defend"
@@ -140,12 +141,12 @@ class Player(Avatar):
         if(decision == "1"):
             #-///- possible expansion here for a second input tags as well as physical vs magic spells 
             # get damage
-            damageDealt = self.calculateAttack(weaponValues)
+            damageDealt = self.calculateAttack(self.weaponValues)
 
             # factor defense cuts damage in two
             if(recipient.defending == True):
                 print("The target was defending! Decreased Damage :(")
-                damageDealt = self.calculateAttack(weaponValues)/2
+                damageDealt = self.calculateAttack(self.weaponValues)/2
 
                 # reset defending 
                 recipient.defending = False;
@@ -161,10 +162,10 @@ class Player(Avatar):
         elif(decision == "3"):
             self.itemPrint()
         
-        elif(decision == "3"):
+        elif(decision == "4"):
             self.itemUse()
             
-        elif(decision == "4"):
+        elif(decision == "5"):
             print("You did. nothing...!")
 
         else:

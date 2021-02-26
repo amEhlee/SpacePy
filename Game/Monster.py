@@ -1,62 +1,62 @@
-from Avatar import Avatar
+from Avatar import Avatar 
+import random
 
 class Monster(Avatar):
 
-	def __init__(self, mName, mHth, mAtk, mDef, mAggro):
-		super().__init__(mName, mHth, mAtk, mDef)
-		self.aggro = mAggro
+    '''
+        Initial Setup
+    '''
+    # Monster attribs @param aggro increases damamge @param species adds attributes to attacks like claws or sharp teeth 
+    aggro = 0
+    species = ""
 
-	def battleAction(self, recipient):
-		''' battle action specific to player monsters operate differently cause they can't choose actions'''
-        decision = input("\nWhat action do you take?"
-                            + "\n1. attack"
-                            + "\n2. defend"
-                            + "\n3. show inventory"
-                            + "\n4. useItem"
-                            + "\n5. do nothing..."
-		)
+    # monster species quotes
+    SlimeQuotes = {
+        1 : "Buy Low, Sell Slime?",
+        2 : "You Think This Slime Is Just For Show?",
+        3 : "Yadda Yadda Yadda"
+    }
 
-        if(decision == "1"):
-            #-///- possible expansion here for a second input tags as well as physical vs magic spells 
-            # get damage
-            damageDealt = self.calculateAttack(weaponValues)
+    def __init__(self, mName, mHth, mAtk, mDef, mAggro, mSpecies):
+        super().__init__(mName, mHth, mAtk, mDef)
+        self.aggro = mAggro
+        self.species = mSpecies
 
-            # factor defense cuts damage in two
-            if(recipient.defending == True):
-                print("The target was defending! Decreased Damage :(")
-                damageDealt = self.calculateAttack(weaponValues)/2
+    '''
+        Battle Events
+    '''
 
-                # reset defending 
-                recipient.defending = False;
+    def sayQuotes(self):
+        if(self.species == "Slime"):
+            quoteNum = random.randint(1,len(self.SlimeQuotes))
+            print(self.SlimeQuotes[quoteNum])
 
-            # standard attacking 
-            print("{} attacked {} for {} points of damage".format(self.name, recipient.name, damageDealt))
-            recipient.health -= damageDealt
+    def battleAction(self, recipient):
+        defending = False; # reset defending status 
+        decision = random.randint(1,3); # use a random number to select action
 
-        elif(decision == "2"):
-            print("You're Defending from the next attack")
-            self.defending = True
+        # pre calculate damage
+        damageDealt = self.calculateAttack(self.mAtk)
 
-        elif(decision == "3"):
-            self.itemPrint()
-        
-        elif(decision == "3"):
-            self.itemUse()
-            
-        elif(decision == "4"):
-            print("You did. nothing...!")
+        # factor defense cuts damage in two
+        if(recipient.defending == True):
+            print("The target was defending! Decreased Damage")
+            damageDealt = damageDealt/2
 
-        else:
-            print("Invalid input.. retry!")
-            self.battleAction(recipient)
+            # reset defending 
+            recipient.defending = False;
 
-    # toString method 
-	def __str__(self):
-        return("Hello my name is {}\nI have {} aggro so far \nHealth: {}\nAttack: {}\nDefense:{}\n\n".format(
-            self.name,
-            self.weapon,
-            self.health,
-            self.attack,
-            self.defense
-            ))
 
+        if(decision == 1): # scratch
+            # standard scratch attack
+            print("{} attacked {} with a scratch for {} points of damage!".format(self.name, recipient.name, damageDealt))
+            recipient.health -= damageDealt;
+
+        elif(decision == 2): # bite
+            # standard bite attack
+            print("{} bit {} for {} points of damage!".format(self.name, recipient.name, damageDealt))
+            recipient.health -= damageDealt;
+
+        elif(decision == 3): # defend 
+            print("{} is now defending!".format(self.name))
+            defending = True;

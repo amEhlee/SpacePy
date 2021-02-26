@@ -77,7 +77,7 @@ class SpacWorld:
     Character Creation o is prefixed for object
     '''
     oPlayer = Player(None,None,None,None,None)
-    oMonster = Monster("Monster",200,20,20,0)
+    oMonster = Monster("Z the Slime",200,20,30,0,"Slime")
 
     '''
     Story Options
@@ -483,6 +483,7 @@ class SpacWorld:
     MAIN HEADER BUT BATTLES SHOULD BE CLEANED UP A LOT MORE THAN THIS 
     '''
     def battleScript(self, recipient):
+        ''' basic battle system going in the order: Monster Taunt -> Player Action -> Monster Action Repeat!'''
         while((self.oPlayer.health > 0) and (recipient.health > 0)):
             #print a break including player and monster information
             print("\n\n---- BATTLE ---- \n\n")
@@ -490,7 +491,7 @@ class SpacWorld:
             print("{} has {} health points remaining".format(self.oPlayer.name,self.oPlayer.health))
 
             # monster taunts player
-            #recipient.sayQuote() -///-
+            recipient.sayQuotes()
 
             # allow player to attack
             self.oPlayer.battleAction(recipient)

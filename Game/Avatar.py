@@ -8,7 +8,7 @@ class Avatar():
     health = None
     attack = None 
     defense = None
-    defendState = False;
+    defending = False;
 
     # base constructor for object creation
     def __init__(self, _name, _health, _attack, _defense):
@@ -22,8 +22,9 @@ class Avatar():
     def calculateAttack(self,attack_value):
         min_value = attack_value[0]
         max_value = attack_value[1]
+
         crit = False  # initalize crit chance varible
-        attack = math.uniform(min_value, max_value)  # returns a random number between min and max
+        attack = random.randint(min_value, max_value)  # returns a random number between min and max
 
         # Possible crit chance on every hit using randint
         if random.randint(0, 100) < 10:
@@ -40,10 +41,6 @@ class Avatar():
             # return attack
             print('This action has %s points' % attack)
         return attack
-
-    # Process all damage taken to self and use attacking method from before 
-    def takeDamage(self,points):
-        self.health -= attacking(points)
 
     # toString method returns values of all attribs
     def __str__(self):
