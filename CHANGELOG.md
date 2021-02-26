@@ -6,23 +6,29 @@
         - Script and text improved
         - General improvments to syntax, text now uses add text effect
         - greater error checking and handling 
-        - player battle action working on mosnter now
+        - BATTLE SYSTEM REVISED and actions implemented for player and monster objects
+          some fixes were also done for avatar to make up for battle system implementations
+        - Battle quotes for monster and species support for more personalized quotes
 
     **TODO**
         Battle System
-        - possibly revise crit system (going)
-        - Renovate ingame battle system (going)
+        - Revisions to attacking and damage / defense calculation [On Hold]
+        - Renovate ingame battle system, more actions and items [WIP]
+        - Party Members | See Script Ideas ~
 
         Items and Inventory
-        - Improv player functions/methods as well as possible dedicated inventory system? (going)
-        - possible redesign to have items take in new values
+        - Make items possible to be used as well as common items that affect player stats
+        - inventory system that allows weapons/armor to be equiped/dequipped
+        - ability to use items in and out of battle
 
         Text and Writing 
         - consider improving dialogue and dialogue options 
+        - visual canvas
 
         Design decisions
         - consider use of pygame in workign to make this a bit more of game and not just console based AYAYAAYAYAY NEW GOALS (hold)
         - consider addtions to monster functions and creation of smaller monsters (hold)
+        - runnable visual program following implementation of pygame
 
 
 
