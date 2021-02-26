@@ -10,7 +10,7 @@ Since this project is just meant to help myself learn git there isnt much to see
 
 # HOW TO GET IT RUNNING 
     1. Navigate in terminal to where you have saved the downloaded SpacePy Folder or Pref use an ide like vscode
-    2. Your location should look something like this "C:\Users\userX\Downloads\SpacePy>"
+    2. Your location should look something like this "C:\Users\userX\Downloads\Vertige>"
     3. From here in terminal type in "python3 ./Game/main.py" or if you're using an ide run the main.py file
     4. Congrats you should be runnning it now!
 
