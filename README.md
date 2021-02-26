@@ -1,4 +1,4 @@
-# SpacePy
+# VERTIGE
 
 **Current Version v0.0.2.2** - [Changelog](CHANGELOG.md)
 
