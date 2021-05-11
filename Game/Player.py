@@ -34,11 +34,11 @@ class Player(Avatar):
         REGION: ITEMS AND STATS
     '''
     #-///-:
-    def itemAdd(self,itemName,itemDescription,itemRange):
+    def itemAdd(self,item):
         '''Quick function to add items to inventory while adding to the AMOUNT of similar items'''
 
         # initalize variables
-        newItem = Item(itemName,itemDescription,itemRange,1,None) # new item to be inputted
+        itemName = item.name
         foundItem = False # track if item was found or not 
 
         # Try to find if the item already exists. If add to AMOUNT of that item
@@ -54,7 +54,7 @@ class Player(Avatar):
 
         # if the item was never found in the list add to the list
         if(foundItem != True):
-            self.inventory.append(newItem)
+            self.inventory.append(item)
 
     def itemUse(self, itemName):
         '''
